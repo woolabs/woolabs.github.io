@@ -1,0 +1,8 @@
+excerpt_separator: ""
+pygments: true
+markdown: kramdown
+url: http://woolabs.github.io
+title: Drops
+tagline: Secure
+description: My awesome new site
+paginate: 5
