@@ -5,6 +5,8 @@ layout: post
 ---
 Author:[RedRain](http://drops.wooyun.org/author/redrain%E6%9C%89%E8%8A%82%E6%93%8D)
 
+Original:http://drops.wooyun.org/tips/5234
+
 ----------
 
 # 00 Introduction 
@@ -280,5 +282,3 @@ wce
 Intranet penetration is a very broad concept. I just talked about some very simple questions in this paper and some ordinary thoughts.
 
 If it's possible, I would talk more about domain penetration,  printer, Office network sniffing and intrusion log cleanup.
-
-from：http://drops.wooyun.org/tips/5234
