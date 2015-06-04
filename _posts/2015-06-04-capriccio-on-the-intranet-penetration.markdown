@@ -16,11 +16,9 @@ Intranet penetration definitely cannot be illustrated in one or two articles. Th
 
 ## 1.1the forward proxy 
 
-```
-Lhost--》proxy--》Rhost
 
- 
-```
+    Lhost－－》proxy－－》Rhost
+
 
 
 
@@ -259,4 +257,3 @@ Intranet penetration is a very broad concept. I just talked about some very simp
 If it's possible, I would talk more about domain penetration,  printer, Office network sniffing and intrusion log cleanup.
 
 from：http://drops.wooyun.org/tips/5234
-
