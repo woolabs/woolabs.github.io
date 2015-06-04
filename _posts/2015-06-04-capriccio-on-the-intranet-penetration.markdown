@@ -11,7 +11,7 @@ Intranet penetration definitely cannot be illustrated in one or two articles. Th
 
 # 01. intranet proxy and forwarding
 
-![image](https://quip.com/-/blob/YCIAAADtDa5/gNFHcx2vzWIgLNvnX-JBYA)
+![image](http://static.wooyun.org/20150316/2015031603142416882.png)
 
 the distinction between a forward proxy and a reverse proxy
 
@@ -150,7 +150,7 @@ For devices using snmp , the only thing we need is the community string. So the 
 
 The first step is to scan the 161 port to determine whether snmp is open or not and use the weak passwork to get device information as well to read the device password in oid.
 
-![image](https://quip.com/-/blob/YCIAAADtDa5/tl2vBdofdhYPmzwdlLMDEQ)
+![image](http://static.wooyun.org/drops/20150316/201503160400084357525.jpg)
 
 
 Example:[Using Huawei's SNMP vulnerability  to obtain administrative account passwords and the account has been successfully logged on](http://www.wooyun.org/bugs/wooyun-2013-021964)
@@ -159,7 +159,7 @@ Using this nmap and msf script to perform automatical attack on [H3C-PT-tools](h
 
 * try to gather sensitive information from the User directory in the host or from the Management Operation Emails(there is a case in which a penetration is successfully performed by using a keylogger to steal the topology and network segement )
 
-![image](https://quip.com/-/blob/YCIAAADtDa5/7ErKRqIUAnbklAHjws2v6A)
+![image](http://static.wooyun.org/drops/20150316/201503160400132745233.jpg)
 
 * Find DNS servers in the intranet through resolv.conf, or enumerate dns in the dictionary
 * By analyzing user . bash_history to get user behavior, and records. Together with ~/.Shh/ to match history connected records, use keys to log on other machines
@@ -176,7 +176,7 @@ Using this nmap and msf script to perform automatical attack on [H3C-PT-tools](h
 
 Brute force ssh,dbserver,vnc,ftp
 
-![image](https://quip.com/-/blob/YCIAAADtDa5/fq4G-dhMDicQV4UM2j7Srw)
+![image](http://static.wooyun.org/20150316/2015031603142528600.png)
 
 * For servers enabling web service, identifying a batch of banners of machines first can reduce the workload in penetration. Then using banners to confirm cms or middleware, then directly use exp
 * man-in-the-middle attack
@@ -186,13 +186,13 @@ Ettercap is more often used. ARP MITM is not recommended, you can try DHCP MITM 
 
 You can also hijack plugin, attack the gateway, or use evilgrade to fake software updates (eg: Notepad++), and then embed a backdoor, deliver it to the machine to hack into the Office network
 
-![image](https://quip.com/-/blob/YCIAAADtDa5/0FXanSgdU3VT2cK7Lp98uA)
+![image](http://static.wooyun.org/20150316/2015031603142610588.png)
 
-![image](https://quip.com/-/blob/YCIAAADtDa5/pMPfOkwDn-rfTy13CCVyaQ)
+![image](http://static.wooyun.org/20150316/2015031603142614810.png)
 
 After simple configurations, you could use msf to generate a backdoor. Then together useing start and ettercap, you would fake a software update.
 
-![image](https://quip.com/-/blob/YCIAAADtDa5/xFFFT7l8h9HaSSOkWuS3-w)
+![image](http://static.wooyun.org/20150316/2015031603142654555.png)
 
 * common attacks on service vulnerabilities
     smb/ms08067/ipc$/NetBIOS............
@@ -248,9 +248,9 @@ Or you can use the key log function that comes with meterpreter session
     keyscan_start keyscan_dump 
 
 
-![image](https://quip.com/-/blob/YCIAAADtDa5/cRaYG1_jRlb3Y2Cs2Nn0Gw)
+![image](http://static.wooyun.org/20150316/2015031603142712585.png)
 
-![image](https://quip.com/-/blob/YCIAAADtDa5/PlSN9q1rPVvx8W0ZxbKwEQ)
+![image](http://static.wooyun.org/20150316/2015031603142781920.png)
 
 The benefit of Meterpreter is that meyerpreter can be injected in the memory in Windows without creating any process.
 
