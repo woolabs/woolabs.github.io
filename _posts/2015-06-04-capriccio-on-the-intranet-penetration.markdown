@@ -81,7 +81,7 @@ You just simply need to upload a Webshell on the target server, then forward all
 
 The instuction coming with [ReGeorg](https://github.com/sensepost/reGeorg)is clear enough:
 
-* Step 1. Upload tunnel.(aspx|ashx|jsp|php) to a webserver (How you do that is up to you)
+* Step 1. Upload tunnel.\(aspx\|ashx\|jsp\|php\) to a webserver (How you do that is up to you)
 
 * Step 2. Configure you tools to use a socks proxy, use the ip address and port you specified when you started the reGeorgSocksProxy.py
 
