@@ -4,5 +4,5 @@ markdown: kramdown
 url: http://woolabs.github.io
 title: Drops
 tagline: Secure
-description: Drops is one of the greatest platforms for security-related technical blogs in China. We dedicate to translate every amazing post into English and push it to this website, meanwhile we would be very honored if you could submit your atricles at drops@wooyun.org.
+description: Drops is one of the greatest platforms for security-related technical blogs in China. website:drops.wooyun.org
 paginate: 5
