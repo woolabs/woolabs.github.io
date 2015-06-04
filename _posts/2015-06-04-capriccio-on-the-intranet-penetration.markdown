@@ -6,6 +6,7 @@ layout: post
 Author:[Redrain](http://drops.wooyun.org/author/redrain%E6%9C%89%E8%8A%82%E6%93%8D)
 
 ----------
+
 # 00 Introduction 
 
 Many of my WeiBo followers and [zone](http://zone.wooyun.org/) user have been asking me about intranet penetration techniques, so I've taken the liberty to write this article. I'm open to any corrections.
