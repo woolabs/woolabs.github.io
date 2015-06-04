@@ -19,8 +19,6 @@ Intranet penetration definitely cannot be illustrated in one or two articles. Th
 
 ![image](http://static.wooyun.org/20150316/2015031603142416882.png)
 
-<!--more-->
-
 the distinction between a forward proxy and a reverse proxy
 
 ## 1.1 the forward proxy 
