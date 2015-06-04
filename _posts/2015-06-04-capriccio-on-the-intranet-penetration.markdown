@@ -169,10 +169,15 @@ Using this nmap and msf script to perform automatical attack on [H3C-PT-tools](h
 * Based on the former information gathering and probe, determine the main business machines, such as OA, dbserver. Use SSH trust to access the target machine and ex-filtrate the userlist from employees, then make it to specific dictionary. Most network security is fragile, and the most problematic point is the password security (large companies are of no exception)
 
      %username%1
+
      %username%12
+
      %username%123
+
      %username%1234
+
      %username%12345
+
      %username%123456
 
 Brute force ssh,dbserver,vnc,ftp
