@@ -32,7 +32,7 @@ But this brings another problem, what should we do if all we need is to request 
 
 Generally there will be some distinctions. Some advanced applications mostly adopt CDN , load  nginx as a balance processor to work on load distribution. If the requested URL is a static file, CDN or nginx would directly return the corresponding file, which is showed in the following picture:
 
-![image](http://static.wooyun.org//drops/20150614/201506141154077555371P7HO69NZNQMVU6%G8N.jpg)
+![image](http://static.wooyun.org//drops/20150614/2015061411570339559111.jpg)
 
 There is also a question in definition. What sorts of request can be viewed as a request for "static files"? As long as the ending is .css、.js ? Of course, this is a possible way, but generally we need define a directory, such as /static/. All requests matching "/static/(. *)" will be considered a static file, so developers usually place static files in this directory. Thus, users can easily request these files.
 
