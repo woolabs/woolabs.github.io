@@ -86,7 +86,7 @@ Log.d ()/v (): recommended to print Development Logs
     }
 
 
-3. the returned value of Log.d ()/v () should not be used. (Only for development debugging observation)
+3  the returned value of Log.d ()/v () should not be used. (Only for development debugging observation)
 
 Examination code which Log.v() that is specifeied to be deleted is not deketed
 
@@ -95,7 +95,7 @@ Examination code which Log.v() that is specifeied to be deleted is not deketed
     System.out.println(String.format("Log.v() returned %d. ", i)); //Use the returned value of Log.v() for    examination
 
 
-4. released verson of apps should automatically remove codes like Log.d()/v().
+4 released verson of apps should automatically remove codes like Log.d()/v().
 
 Configuring ProGuard in eclipse
 
@@ -113,7 +113,7 @@ Viewing in decompilers, the logs are indeed removed.
 
 ![image](https://quip.com/blob/QefAAAOvlFp/T72S5YyCezUTVCZcNKbqSA?s=WfhYAqYJunaN)
 
-5. APK files should be the release version and not the development version when going to public.
+5 APK files should be the release version and not the development version when going to public.
 
 #0x04 native code
 -----
