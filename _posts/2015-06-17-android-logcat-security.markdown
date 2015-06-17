@@ -17,7 +17,7 @@ Android.util.Log: offers five export functions
 
     ERROR, WARN, INFO, DEBUG, VERBOSE
 
-Android permission READ_LOGS:logs reading permission. App logs can be accessed by requesting READ_LOGS permission in Android  prior to 4.1. But Google finds it is a security risk. So in Android 4.1 and later version, App logs can not be accessed with READ_LOGS permission.  The signature of Logcat has been changed into "signature|system|development" in Android 4.1, which means that only system signed apps or apps with root permission are allows to gain this permission. Ordinary users can view all of the logs through ADB.
+Android permission READ_LOGS:logs reading permission. App logs can be accessed by requesting READ_LOGS permission in Android  prior to 4.1. But Google finds it is a security risk. So in Android 4.1 and later version, App logs can not be accessed with READ_LOGS permission.  The signature of Logcat has been changed into `signature|system|development` in Android 4.1, which means that only system signed apps or apps with root permission are allows to gain this permission. Ordinary users can view all of the logs through ADB.
 
 #0x01 test
 
@@ -65,9 +65,10 @@ Log.e () in/w ()/i (): recommended to print operation log
 
 Log.d ()/v (): recommended to print Development Logs 
 
-1. use System.out/err, instead of Log.e()/w()/i() to print sensitive information.
+1 use System.out/err, instead of Log.e()/w()/i() to print sensitive information.
 
-2. it's recommended to print some sensitive information by using Log.d ()/v (). (Pre-requisite: it will be automatically removed in release version)
+2 it's recommended to print some sensitive information by using Log.d ()/v (). 
+(Pre-requisite: it will be automatically removed in release version)
 
 
     @Override
