@@ -3,7 +3,6 @@ published: true
 title: Android Logcat Security
 layout: post
 ---
-
 #0x00 Background Knowledge
 
 -----
@@ -14,9 +13,9 @@ Release version:official version for customers contains less debugging logs.
 
 Android.util.Log: offers five export functions
 
-Log.e(), Log.w(), Log.i(), Log.d(), Log.v()
+    Log.e(), Log.w(), Log.i(), Log.d(), Log.v()
 
-ERROR, WARN, INFO, DEBUG, VERBOSE
+    ERROR, WARN, INFO, DEBUG, VERBOSE
 
 Android permission READ_LOGS:logs reading permission. App logs can be accessed by requesting READ_LOGS permission in Android  prior to 4.1. But Google finds it is a security risk. So in Android 4.1 and later version, App logs can not be accessed with READ_LOGS permission.  The signature of Logcat has been changed into "signature|system|development" in Android 4.1, which means that only system signed apps or apps with root permission are allows to gain this permission. Ordinary users can view all of the logs through ADB.
 
@@ -36,7 +35,7 @@ Apparently, the other option is to write an app that directly captures logcat on
 <uses-permission android:name="android.permission.READ_LOGS"/>
 ```
 
-![image](https://quip.com/blob/QefAAAOvlFp/b8OfWNdHvCCRAYXwgjuiYg?s=WfhYAqYJunaN_
+![image](https://quip.com/blob/QefAAAOvlFp/b8OfWNdHvCCRAYXwgjuiYg?s=WfhYAqYJunaN)
 
 On the other hand, if you have root permission, you can easily access logcat. In other words, Google does no help to fix the vulnerabilities that logcat caused and their efforts on Android 4.1 are meaningless.
 
@@ -346,8 +345,3 @@ http://developer.android.com/intl/zh-cn/tools/help/proguard.html
 https://www.securecoding.cert.org/confluence/display/java/DRD04-J.+Do+not+log+sensitive+information
 
 https://android.googlesource.com/platform/frameworks/base.git/+/android-4.2.2_r1/core/jni/android_util_Log.cpp
-
-
-
-
-
