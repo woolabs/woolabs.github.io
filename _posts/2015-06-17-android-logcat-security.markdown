@@ -47,16 +47,18 @@ On the other hand, if you have root permission, you can easily access logcat. In
 
 An article http://drops.wooyun.org/tips/2986 stated that printing out sensitive information before encrytion is actually a method that uses static smali to inject logcat.  It's very convenient to use APK 改之理 to inject smali，but you need to remember that adding a register might destroy its logic. As a result, green hands are not suggested to do so. The best option for them is to use existing registers. 
 
-```
-invoke-static {v0, v0}, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String;)I
-```
+
+    invoke-static {v0, v0}, Landroid/util/Log;->e(Ljava/lang/String; Ljava/lang/String;)I
+
 
 ![image](https://quip.com/blob/QefAAAOvlFp/TFuS5NETHe_QKS653Ftrkg?s=WfhYAqYJunaN)
 
 ![image](https://quip.com/blob/QefAAAOvlFp/eVV1NTQmcKElF8xSCnAJZg?s=WfhYAqYJunaN)
 
 #0x03 recommendations
+
 -----
+
 Some people think that no log should be printed in a release version. But in order to collect errors of apps and feedback for abnormalities, necessary logs should be printed. So long as it complies with secure encoding schemes, the risk of that can be controlled.
 
 Log.e () in/w ()/i (): recommended to print operation log 
@@ -67,30 +69,30 @@ Log.d ()/v (): recommended to print Development Logs
 
 2. it's recommended to print some sensitive information by using Log.d ()/v (). (Pre-requisite: it will be automatically removed in release version)
 
-```
-@Override
-public void onCreate(Bundle savedInstanceState) {
-super.onCreate(savedInstanceState);
-setContentView(R.layout.activity_proguard);
-// *** POINT 1 *** Sensitive information must not be output by Log.e()/w()/i(), System.out/err.
-Log.e(LOG_TAG, "Not sensitive information (ERROR)");
-Log.w(LOG_TAG, "Not sensitive information (WARN)");
-Log.i(LOG_TAG, "Not sensitive information (INFO)");
-// *** POINT 2 *** Sensitive information should be output by Log.d()/v() in case of need.
-// *** POINT 3 *** The return value of Log.d()/v()should not be used (with the purpose of substitution or comparison).
-Log.d(LOG_TAG, "sensitive information (DEBUG)");
-Log.v(LOG_TAG, "sensitive information (VERBOSE)");
-}
-```
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_proguard);
+    // *** POINT 1 *** Sensitive information must not be output by Log.e()/w()/i(), System.out/err.
+    Log.e(LOG_TAG, "Not sensitive information (ERROR)");
+    Log.w(LOG_TAG, "Not sensitive information (WARN)");
+    Log.i(LOG_TAG, "Not sensitive information (INFO)");
+    // *** POINT 2 *** Sensitive information should be output by Log.d()/v() in case of need.
+    // *** POINT 3 *** The return value of Log.d()/v()should not be used (with the purpose of substitution or comparison).
+    Log.d(LOG_TAG, "sensitive information (DEBUG)");
+    Log.v(LOG_TAG, "sensitive information (VERBOSE)");
+    }
+
 
 3. the returned value of Log.d ()/v () should not be used. (Only for development debugging observation)
 
 Examination code which Log.v() that is specifeied to be deleted is not deketed
 
-```
-int i = android.util.Log.v("tag", "message");
-System.out.println(String.format("Log.v() returned %d. ", i)); //Use the returned value of Log.v() for examination
-```
+
+    int i = android.util.Log.v("tag", "message");
+    System.out.println(String.format("Log.v() returned %d. ", i)); //Use the returned value of Log.v() for    examination
+
 
 4. released verson of apps should automatically remove codes like Log.d()/v().
 
@@ -118,89 +120,85 @@ The constructor of android.util.Log is private and will not be instantiated, whi
 
 Log.e(String tag, String msg)
 
-```
-public static int v(String tag, String msg) {
-    return println_native(LOG_ID_MAIN, VERBOSE, tag, msg);
-}
-```
+
+    public static int v(String tag, String msg) {
+        return println_native(LOG_ID_MAIN, VERBOSE, tag, msg);
+    }
+
 
 println_native(LOG_ID_MAIN, VERBOSE, tag, msg)
 
-```
-/*
- * In class android.util.Log:
- *  public static native int println_native(int buffer, int priority, String tag, String msg)
- */
-static jint android_util_Log_println_native(JNIEnv* env, jobject clazz,
-    jint bufID, jint priority, jstring tagObj, jstring msgObj)
-{
-const char* tag = NULL;
-const char* msg = NULL;
-
-if (msgObj == NULL) {
-    jniThrowNullPointerException(env, "println needs a message");
-    return -1;
-}
-
-if (bufID < 0 || bufID >= LOG_ID_MAX) {
-    jniThrowNullPointerException(env, "bad bufID");
-    return -1;
-}
-
-if (tagObj != NULL)
-    tag = env->GetStringUTFChars(tagObj, NULL);
-msg = env->GetStringUTFChars(msgObj, NULL);
-
-int res = __android_log_buf_write(bufID, (android_LogPriority)priority, tag, msg);
-
-if (tag != NULL)
-    env->ReleaseStringUTFChars(tagObj, tag);
-env->ReleaseStringUTFChars(msgObj, msg);
-
-return res;
-}
-```
+    /*
+     * In class android.util.Log:
+     *  public static native int println_native(int buffer, int priority, String tag, String msg)
+     */
+    static jint android_util_Log_println_native(JNIEnv* env, jobject clazz,
+        jint bufID, jint priority, jstring tagObj, jstring msgObj)
+    {
+    const char* tag = NULL;
+    const char* msg = NULL;
+    
+    if (msgObj == NULL) {
+        jniThrowNullPointerException(env, "println needs a message");
+        return -1;
+    }
+    
+    if (bufID < 0 || bufID >= LOG_ID_MAX) {
+        jniThrowNullPointerException(env, "bad bufID");
+        return -1;
+    }
+    
+    if (tagObj != NULL)
+        tag = env->GetStringUTFChars(tagObj, NULL);
+    msg = env->GetStringUTFChars(msgObj, NULL);
+    
+    int res = __android_log_buf_write(bufID, (android_LogPriority)priority, tag, msg);
+    
+    if (tag != NULL)
+        env->ReleaseStringUTFChars(tagObj, tag);
+    env->ReleaseStringUTFChars(msgObj, msg);
+    
+    return res;
+    }
 
 __Android_log_buf_write () called   write_to_log again.
 
-```
-static int __write_to_log_init(log_id_t log_id, struct iovec *vec, size_t nr)
-{
-#ifdef HAVE_PTHREADS
-    pthread_mutex_lock(&log_init_lock);
-#endif
-
-    if (write_to_log == __write_to_log_init) {
-        log_fds[LOG_ID_MAIN] = log_open("/dev/"LOGGER_LOG_MAIN, O_WRONLY);
-        log_fds[LOG_ID_RADIO] = log_open("/dev/"LOGGER_LOG_RADIO, O_WRONLY);
-        log_fds[LOG_ID_EVENTS] = log_open("/dev/"LOGGER_LOG_EVENTS, O_WRONLY);
-        log_fds[LOG_ID_SYSTEM] = log_open("/dev/"LOGGER_LOG_SYSTEM, O_WRONLY);
-
-        write_to_log = __write_to_log_kernel;
-
-        if (log_fds[LOG_ID_MAIN] < 0 || log_fds[LOG_ID_RADIO] < 0 ||
-            log_fds[LOG_ID_EVENTS] < 0) {
-            log_close(log_fds[LOG_ID_MAIN]);
-            log_close(log_fds[LOG_ID_RADIO]);
-            log_close(log_fds[LOG_ID_EVENTS]);
-            log_fds[LOG_ID_MAIN] = -1;
-            log_fds[LOG_ID_RADIO] = -1;
-            log_fds[LOG_ID_EVENTS] = -1;
-            write_to_log = __write_to_log_null;
+    static int __write_to_log_init(log_id_t log_id, struct iovec *vec, size_t nr)
+    {
+    #ifdef HAVE_PTHREADS
+        pthread_mutex_lock(&log_init_lock);
+    #endif
+    
+        if (write_to_log == __write_to_log_init) {
+            log_fds[LOG_ID_MAIN] = log_open("/dev/"LOGGER_LOG_MAIN, O_WRONLY);
+            log_fds[LOG_ID_RADIO] = log_open("/dev/"LOGGER_LOG_RADIO, O_WRONLY);
+            log_fds[LOG_ID_EVENTS] = log_open("/dev/"LOGGER_LOG_EVENTS, O_WRONLY);
+            log_fds[LOG_ID_SYSTEM] = log_open("/dev/"LOGGER_LOG_SYSTEM, O_WRONLY);
+    
+            write_to_log = __write_to_log_kernel;
+    
+            if (log_fds[LOG_ID_MAIN] < 0 || log_fds[LOG_ID_RADIO] < 0 ||
+                log_fds[LOG_ID_EVENTS] < 0) {
+                log_close(log_fds[LOG_ID_MAIN]);
+                log_close(log_fds[LOG_ID_RADIO]);
+                log_close(log_fds[LOG_ID_EVENTS]);
+                log_fds[LOG_ID_MAIN] = -1;
+                log_fds[LOG_ID_RADIO] = -1;
+                log_fds[LOG_ID_EVENTS] = -1;
+                write_to_log = __write_to_log_null;
+            }
+    
+            if (log_fds[LOG_ID_SYSTEM] < 0) {
+                log_fds[LOG_ID_SYSTEM] = log_fds[LOG_ID_MAIN];
+            }
         }
-
-        if (log_fds[LOG_ID_SYSTEM] < 0) {
-            log_fds[LOG_ID_SYSTEM] = log_fds[LOG_ID_MAIN];
-        }
+    
+    #ifdef HAVE_PTHREADS
+        pthread_mutex_unlock(&log_init_lock);
+    #endif
+    
+        return write_to_log(log_id, vec, nr);
     }
-
-#ifdef HAVE_PTHREADS
-    pthread_mutex_unlock(&log_init_lock);
-#endif
-
-    return write_to_log(log_id, vec, nr);
-}
-```
 
 总的来说println_native()的操作就是打开设备文件然后写入数据。
 
@@ -257,76 +255,74 @@ if (BuildConfig.DEBUG) Log.d(TAG, "result:" + value);
 #0x07 log tools
 -----
 
-```
-import android.util.Log;  
- 
-/** 
- * Log Management class 
- *  
- *  
- *  
- */
-public class L  
-{  
- 
-    private L()  
+    import android.util.Log;  
+     
+    /** 
+     * Log Management class 
+     *  
+     *  
+     *  
+     */
+    public class L  
     {  
-        /* cannot be instantiated */
-        throw new UnsupportedOperationException("cannot be instantiated");  
-    }  
- 
-    public static boolean isDebug = true;// Whether you want to print bug, in onCreate function application can initialize
-    private static final String TAG = "way";  
-  // Four of the following are default tag function
-    public static void i(String msg)  
-    {  
-        if (isDebug)  
-            Log.i(TAG, msg);  
-    }  
- 
-    public static void d(String msg)  
-    {  
-        if (isDebug)  
-            Log.d(TAG, msg);  
-    }  
- 
-    public static void e(String msg)  
-    {  
-        if (isDebug)  
-            Log.e(TAG, msg);  
-    }  
- 
-    public static void v(String msg)  
-    {  
-        if (isDebug)  
-            Log.v(TAG, msg);  
-    }  
- // the following is a function of incoming custom tag 
-    public static void i(String tag, String msg)  
-    {  
-        if (isDebug)  
-            Log.i(tag, msg);  
-    }  
- 
-    public static void d(String tag, String msg)  
-    {  
-        if (isDebug)  
-            Log.i(tag, msg);  
-    }  
- 
-    public static void e(String tag, String msg)  
-    {  
-        if (isDebug)  
-            Log.i(tag, msg);  
-    }  
- 
-    public static void v(String tag, String msg)  
-    {  
-        if (isDebug)  
-            Log.i(tag, msg);  
-    }  
-}
-```
+     
+        private L()  
+        {  
+            /* cannot be instantiated */
+            throw new UnsupportedOperationException("cannot be instantiated");  
+        }  
+     
+        public static boolean isDebug = true;// Whether you want to print bug, in onCreate function application can initialize
+        private static final String TAG = "way";  
+      // Four of the following are default tag function
+        public static void i(String msg)  
+        {  
+            if (isDebug)  
+                Log.i(TAG, msg);  
+        }  
+     
+        public static void d(String msg)  
+        {  
+            if (isDebug)  
+                Log.d(TAG, msg);  
+        }  
+     
+        public static void e(String msg)  
+        {  
+            if (isDebug)  
+                Log.e(TAG, msg);  
+        }  
+     
+        public static void v(String msg)  
+        {  
+            if (isDebug)  
+                Log.v(TAG, msg);  
+        }  
+     // the following is a function of incoming custom tag 
+        public static void i(String tag, String msg)  
+        {  
+            if (isDebug)  
+                Log.i(tag, msg);  
+        }  
+     
+        public static void d(String tag, String msg)  
+        {  
+            if (isDebug)  
+                Log.i(tag, msg);  
+        }  
+     
+        public static void e(String tag, String msg)  
+        {  
+            if (isDebug)  
+                Log.i(tag, msg);  
+        }  
+     
+        public static void v(String tag, String msg)  
+        {  
+            if (isDebug)  
+                Log.i(tag, msg);  
+        }  
+    }
 
 #0x08 reference
 
