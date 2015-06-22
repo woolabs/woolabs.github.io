@@ -18,8 +18,8 @@ An activity is a visual user interface on which users can perform some actions. 
 
 An application can have one or more Activities, such as the SMS application that we mentioned. Of course, the function and the number of each Activity is naturally determined by the application and its design. Normally, there is always an application marked as the first application that the user would see when starting. If an Activity needs to shift to another, the current Activity will launch the next one.
 
-0x01 Key points
-
+#0x01 Key points
+-------
 Reference: http://developer.Android.com/Guide/components/activities.HTML 
 
 **Time-to-Live**
@@ -350,4 +350,3 @@ Fragment may be explained in another article, so I just mentioned it here.
 ------------
 
 http://www.jssec.org/dl/android_securecoding_en.pdf
-
