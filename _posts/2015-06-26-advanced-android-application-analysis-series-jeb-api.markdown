@@ -21,7 +21,7 @@ Without de-obfuscation:
 
 ![image](https://quip.com/blob/JDMAAAXinpL/w8sVke0ib3wv3Gt10YcNOQ?s=GkVwA30X5Se4)
 
-![image](https://quip.com/blob/JDMAAAXinpL/w6wVJXMeqAn78KCZgKnxIg?s=GkVwA30X5Se4 =100x20)
+![image](https://quip.com/blob/JDMAAAXinpL/w6wVJXMeqAn78KCZgKnxIg?s=GkVwA30X5Se4)
 
 With de-obfuscation:
 
