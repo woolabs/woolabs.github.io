@@ -232,7 +232,7 @@ The output results are as follows:
 
 -----------------
 
-JEB natively supports Java and Python for development, the latter of which is achieved by Jython. To simplify our work, all of our cases use Python. Personally, I suggest you use Scala if you choose java, because java itself is too complex.
+JEB natively supports Java and Python for development, the latter of which is achieved by Jython. To simplify our work, all of our cases use Python. Personally, I suggest you use Scala if you choose java, because java itself is too verbose.
 
 **Java**
 
@@ -270,4 +270,4 @@ Save as test.py, click File->Run Script->test.py, and JEB will print the signatu
 
 This article introduces the basics of JEB Java AST API and plugins writing. It is also complement for an APIDoc reference. In the next article we will  show you how to write advanced plugins based on cases.
 
-Source code and test sample can be found at https://github.com/flankerhqd/jebPlugins.
+Source code and test sample can be found at https://github.com/flankerhqd/jebPlugins.f
