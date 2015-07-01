@@ -76,7 +76,7 @@ SQL statement mosaic
 
 The following  element requests read access to the User Dictionary Provider:
 
-<uses-permission android:name="android.permission.READ_USER_DICTIONARY">
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY">
 
 Request some permissions with protection level="dangerous"
 
