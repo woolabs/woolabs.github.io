@@ -165,25 +165,25 @@ Personally, I think private、public、in-house are enough.
 
 **Case 1: direct expose**
 
-* WooYun: Shengda Youni for Android leaking  sensitive information (read user's local message) (http://www.wooyun.org/bugs/wooyun-2013-041595)
-* WooYun: SINA weibo for Android leaking local message  (http://www.wooyun.org/bugs/wooyun-2013-016854)
-* WooYun: Shengda Qidian reader for Android leaking user's sensitive information, such as client token (http://www.wooyun.org/bugs/wooyun-2013-021089)
-* WooYun: Maxthon browser limitations are not strict, whcih can leading Web fraud attacks (http://www.wooyun.org/bugs/wooyun-2013-039290)
-* WooYun: sogou browser for Phone leaking privacy and containing homepage tampering vulnerability (malware has to install on the mobile phone) (http://www.wooyun.org/bugs/wooyun-2013-042609)
-* WooYun: Coolpad S6 bypass monitoring to sneakly output traffic (http://www.wooyun.org/bugs/wooyun-2014-085432)
-* WooYun: Coolpad S6 bypass notification bar management permission  (http://www.wooyun.org/bugs/wooyun-2014-084500)
+* [WooYun: Shengda Youni for Android leaking  sensitive information (read user's local message) ](http://www.wooyun.org/bugs/wooyun-2013-041595)
+* [WooYun: SINA weibo for Android leaking local message](http://www.wooyun.org/bugs/wooyun-2013-016854)
+* [WooYun: Shengda Qidian reader for Android leaking user's sensitive information, such as client token ](http://www.wooyun.org/bugs/wooyun-2013-021089)
+* [WooYun: Maxthon browser limitations are not strict, whcih can leading Web fraud attacks ](http://www.wooyun.org/bugs/wooyun-2013-039290)
+* [WooYun: sogou browser for Phone leaking privacy and containing homepage tampering vulnerability ](malware has to install on the mobile phone) (http://www.wooyun.org/bugs/wooyun-2013-042609)
+* [WooYun: Coolpad S6 bypass monitoring to sneakly output traffic](http://www.wooyun.org/bugs/wooyun-2014-085432)
+* [WooYun: Coolpad S6 bypass notification bar management permission] (http://www.wooyun.org/bugs/wooyun-2014-084500)
 
 **Case 2: requires permissions to access **
 
-* WooYun: Michat for Android leaking sensitive information(read local message) (http://www.wooyun.org/bugs/wooyun-2013-041521)
-* WooYun: Huawei Netdisk content provider components may leak user information (http://www.wooyun.org/bugs/wooyun-2014-057590)
-* WooYun: Renren client permissions problems leaking privacy (http://www.wooyun.org/bugs/wooyun-2013-039697)
+* [WooYun: Michat for Android leaking sensitive information(read local message) ](http://www.wooyun.org/bugs/wooyun-2013-041521)
+* [WooYun: Huawei Netdisk content provider components may leak user information ](http://www.wooyun.org/bugs/wooyun-2014-057590)
+* [WooYun: Renren client permissions problems leaking privacy ](http://www.wooyun.org/bugs/wooyun-2013-039697)
 
 **Case 3:openFile file traverse**
 
-* WooYun: Ganji Android client's Content Provider module has arbitrary file access vulnerability (http://www.wooyun.org/bugs/wooyun-2013-044407)
-* WooYun: Liebao browser's (Android Edition) any private file can be accessed through local third-party theft vulnerability (http://www.wooyun.org/bugs/wooyun-2013-047098)
-* WooYun: 58 Android client-side remote file write vulnerability (http://www.wooyun.org/bugs/wooyun-2013-044411)
+* [WooYun: Ganji Android client's Content Provider module has arbitrary file access vulnerability ](http://www.wooyun.org/bugs/wooyun-2013-044407)
+* [WooYun: Liebao browser's (Android Edition) any private file can be accessed through local third-party theft vulnerability ](http://www.wooyun.org/bugs/wooyun-2013-047098)
+* [WooYun: 58 Android client-side remote file write vulnerability ](http://www.wooyun.org/bugs/wooyun-2013-044411)
 
 Override openFile method
 
