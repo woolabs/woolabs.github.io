@@ -169,9 +169,9 @@ Personally, I think private、public、in-house are enough.
 * [WooYun: SINA weibo for Android leaking local message](http://www.wooyun.org/bugs/wooyun-2013-016854)
 * [WooYun: Shengda Qidian reader for Android leaking user's sensitive information, such as client token ](http://www.wooyun.org/bugs/wooyun-2013-021089)
 * [WooYun: Maxthon browser limitations are not strict, whcih can leading Web fraud attacks ](http://www.wooyun.org/bugs/wooyun-2013-039290)
-* [WooYun: sogou browser for Phone leaking privacy and containing homepage tampering vulnerability ](malware has to install on the mobile phone) (http://www.wooyun.org/bugs/wooyun-2013-042609)
+* [WooYun: sogou browser for Phone leaking privacy and containing homepage tampering vulnerability (malware has to install on the mobile phone)](http://www.wooyun.org/bugs/wooyun-2013-042609)
 * [WooYun: Coolpad S6 bypass monitoring to sneakly output traffic](http://www.wooyun.org/bugs/wooyun-2014-085432)
-* [WooYun: Coolpad S6 bypass notification bar management permission] (http://www.wooyun.org/bugs/wooyun-2014-084500)
+* [WooYun: Coolpad S6 bypass notification bar management permission](http://www.wooyun.org/bugs/wooyun-2014-084500)
 
 **Case 2: requires permissions to access **
 
